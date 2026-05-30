@@ -1,0 +1,499 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Toca · Proposta Comercial</title>
+
+<!-- Fontes do design system Toca -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   TOCA EXPERIENCE — TEMPLATE DE PROPOSTA COMERCIAL
+   Sistema visual canônico (areia + tinta + acento sunset/dourado)
+   Tudo neste arquivo. Edite apenas os blocos marcados com
+   <!-- EDITAR --> ao longo do HTML mais abaixo.
+   ============================================================ */
+
+:root{
+  /* Paleta principal */
+  --sand-50:#faf6ee; --sand-100:#f5efe5; --sand-200:#ebe2d2; --sand-300:#d9ccb6;
+  --ink:#2a2520; --ink-soft:#5c5247; --ink-mute:#8a7e70;
+  --sea:#2d5e6a; --sea-deep:#1e424a;
+  --sunset:#c97b5b; --sunset-soft:#e0a187; --nature:#7a8a6d;
+  /* Dourado da logo (acento premium) */
+  --gold:#c49028; --gold-soft:#f5dc78; --gold-deep:#7a4c0e;
+  --line:rgba(42,37,32,.14); --line-soft:rgba(42,37,32,.08);
+  --stripe:rgba(42,37,32,.06);
+  /* Tipografia */
+  --serif:"Newsreader","Iowan Old Style",Georgia,serif;
+  --sans:"Manrope",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace;
+  /* Bordas / sombras / layout */
+  --r-sm:4px; --r-md:10px; --r-lg:18px; --r-pill:999px;
+  --shadow-sm:0 1px 2px rgba(42,37,32,.06);
+  --shadow-md:0 8px 28px -8px rgba(42,37,32,.18);
+  --container:1080px;
+  --gutter:clamp(20px,4vw,56px);
+  --header-bg:rgba(245,239,229,.86);
+}
+
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:var(--sans); font-size:16px; line-height:1.6;
+  color:var(--ink); background:var(--sand-100);
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit; text-decoration:none;}
+
+.shell{max-width:var(--container); margin:0 auto; padding:0 var(--gutter);}
+.section{padding:clamp(48px,7vw,96px) 0;}
+
+/* ---- Tipografia helpers ---- */
+.h-display{font-family:var(--serif); font-size:clamp(40px,6vw,68px); font-weight:400; line-height:1.02; letter-spacing:-.01em; text-wrap:balance;}
+.h-section{font-family:var(--serif); font-size:clamp(30px,4vw,46px); font-weight:400; line-height:1.06; text-wrap:balance;}
+.h-eyebrow{font-family:var(--mono); font-size:11px; font-weight:500; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-mute);}
+.lede{font-size:17px; color:var(--ink-soft); line-height:1.6; max-width:62ch; margin-top:16px;}
+em.accent{font-style:italic; color:var(--sunset);}
+
+/* ---- Header ---- */
+.header{position:sticky; top:0; z-index:100; background:var(--header-bg); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:1px solid var(--line-soft);}
+.header-inner{display:flex; align-items:center; justify-content:space-between; gap:24px; height:68px;}
+.logo{display:flex; align-items:center; gap:10px;}
+.logo svg{height:34px; width:auto; display:block;}
+.header-actions{display:flex; align-items:center; gap:14px;}
+.doc-id{font-family:var(--mono); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-mute);}
+.btn-cta{display:inline-flex; align-items:center; gap:8px; padding:10px 18px; background:var(--ink); color:var(--sand-50); border-radius:var(--r-pill); font-size:13.5px; font-weight:500; border:1px solid var(--ink); transition:transform 160ms ease,background 160ms ease;}
+.btn-cta:hover{background:var(--sea-deep); border-color:var(--sea-deep); transform:translateY(-1px);}
+
+/* ---- Botões ---- */
+.btn-primary{display:inline-flex; align-items:center; gap:10px; background:var(--ink); color:var(--sand-50); padding:14px 22px; border-radius:var(--r-pill); border:1px solid var(--ink); font-weight:500; font-size:15px; transition:transform 160ms ease,background 160ms ease; cursor:pointer;}
+.btn-primary:hover{background:var(--sea-deep); border-color:var(--sea-deep); transform:translateY(-1px);}
+.btn-ghost{display:inline-flex; align-items:center; gap:10px; background:transparent; color:var(--ink); padding:13px 20px; border-radius:var(--r-pill); border:1px solid var(--ink); font-weight:500; font-size:15px; transition:background 160ms ease; cursor:pointer;}
+.btn-ghost:hover{background:var(--sand-200);}
+.arrow{transition:transform 200ms ease;}
+.btn-primary:hover .arrow,.btn-ghost:hover .arrow{transform:translateX(3px);}
+
+/* ---- Capa / Cabeçalho da proposta ---- */
+.cover{padding-top:clamp(56px,8vw,96px);}
+.cover .h-eyebrow{margin-bottom:18px;}
+.cover .h-display em{font-style:italic; color:var(--sunset-soft);}
+.cover .lede{margin-bottom:36px;}
+.cover-meta{display:flex; flex-wrap:wrap; gap:28px 40px; padding-top:28px; border-top:1px solid var(--line); margin-top:8px;}
+.cover-meta div{display:flex; flex-direction:column; gap:4px;}
+.cover-meta b{font-family:var(--serif); font-weight:500; font-size:22px; color:var(--ink);}
+.cover-meta span{font-family:var(--mono); font-size:10.5px; text-transform:uppercase; letter-spacing:.14em; color:var(--ink-mute);}
+
+/* ---- Partes (emissor / cliente) ---- */
+.parties{display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:44px;}
+.party{background:var(--sand-50); border:1px solid var(--line-soft); border-radius:var(--r-md); padding:24px 26px;}
+.party h5{font-family:var(--mono); font-size:10.5px; text-transform:uppercase; letter-spacing:.16em; color:var(--gold); font-weight:500; margin-bottom:12px;}
+.party .pname{font-family:var(--serif); font-size:20px; color:var(--ink); margin-bottom:6px;}
+.party p{font-size:14px; color:var(--ink-soft); line-height:1.5;}
+
+/* ---- Eyebrow + título de seção ---- */
+.sec-head{margin-bottom:36px;}
+.sec-head .h-eyebrow{margin-bottom:12px;}
+
+/* ---- Resumo executivo ---- */
+.summary{background:var(--sand-50); border:1px solid var(--line-soft); border-radius:var(--r-lg); padding:clamp(28px,4vw,48px);}
+.summary p{font-size:17px; color:var(--ink-soft); line-height:1.7; max-width:72ch;}
+.summary p + p{margin-top:18px;}
+
+/* ---- Escopo (cards) ---- */
+.scope-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px;}
+.scope-card{background:var(--sand-50); border:1px solid var(--line-soft); border-radius:var(--r-md); padding:26px; transition:transform 160ms ease,box-shadow 160ms ease;}
+.scope-card:hover{transform:translateY(-2px); box-shadow:var(--shadow-md);}
+.scope-card .num{font-family:var(--mono); font-size:11px; letter-spacing:.14em; color:var(--gold); margin-bottom:14px;}
+.scope-card h3{font-family:var(--serif); font-size:22px; font-weight:500; margin-bottom:10px;}
+.scope-card ul{list-style:none; margin-top:8px;}
+.scope-card li{position:relative; padding-left:18px; font-size:14.5px; color:var(--ink-soft); margin:7px 0;}
+.scope-card li::before{content:''; position:absolute; left:0; top:9px; width:6px; height:6px; border-radius:50%; background:var(--sunset);}
+
+/* ---- Cronograma ---- */
+.timeline{border-left:2px solid var(--line); margin-left:6px;}
+.t-item{position:relative; padding:0 0 30px 30px;}
+.t-item:last-child{padding-bottom:0;}
+.t-item::before{content:''; position:absolute; left:-7px; top:4px; width:12px; height:12px; border-radius:50%; background:var(--gold); border:2px solid var(--sand-100);}
+.t-item .t-tag{font-family:var(--mono); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-mute); margin-bottom:6px;}
+.t-item h4{font-family:var(--serif); font-size:20px; font-weight:500; margin-bottom:6px;}
+.t-item p{font-size:14.5px; color:var(--ink-soft); max-width:64ch;}
+
+/* ---- Investimento (tabela) ---- */
+.invest-table{border:1px solid var(--line-soft); border-radius:var(--r-md); overflow:hidden; background:var(--sand-50);}
+.invest-wrap{overflow-x:auto;}
+.invest-table table{width:100%; border-collapse:collapse; font-size:14.5px;}
+.invest-table th,.invest-table td{text-align:left; padding:16px 22px; border-bottom:1px solid var(--line-soft);}
+.invest-table th{font-family:var(--mono); font-size:10.5px; font-weight:500; text-transform:uppercase; letter-spacing:.14em; color:var(--ink-mute); background:var(--sand-100);}
+.invest-table td.item{font-family:var(--serif); font-size:16px; color:var(--ink);}
+.invest-table td.price{font-family:var(--mono); font-size:14px; color:var(--ink); text-align:right; white-space:nowrap;}
+.invest-table th.price{text-align:right;}
+.invest-table tr.total td{border-bottom:none; background:var(--sand-100); font-weight:600;}
+.invest-table tr.total .item{font-family:var(--sans); font-weight:600;}
+.invest-table tr.total .price{font-family:var(--serif); font-size:24px; color:var(--ink); font-weight:500;}
+.invest-note{display:flex; flex-wrap:wrap; gap:14px; margin-top:18px; font-family:var(--mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-mute);}
+.invest-note span{display:inline-flex; align-items:center; gap:7px;}
+.invest-note span::before{content:''; width:6px; height:6px; border-radius:50%; background:var(--gold);}
+
+/* ---- Termos / condições ---- */
+.terms{background:var(--sand-50); border:1px solid var(--line-soft); border-radius:var(--r-lg); padding:clamp(28px,4vw,44px);}
+.terms ol{padding-left:20px; margin-top:10px;}
+.terms li{font-size:14.5px; color:var(--ink-soft); margin:10px 0; line-height:1.6;}
+.validity{display:inline-flex; align-items:center; gap:10px; margin-top:24px; padding:10px 18px; border-radius:var(--r-pill); background:var(--sand-200); font-family:var(--mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-soft);}
+.validity::before{content:'★'; color:var(--sunset);}
+
+/* ---- Bloco de aceite (rodapé) ---- */
+.accept{background:var(--ink); color:var(--sand-100); border-radius:var(--r-lg); padding:clamp(40px,6vw,80px); display:grid; grid-template-columns:1.2fr .8fr; gap:44px; align-items:center;}
+.accept h2{font-family:var(--serif); font-weight:400; font-size:clamp(30px,4.5vw,48px); line-height:1.05; color:var(--sand-50); text-wrap:balance;}
+.accept h2 em{font-style:italic; color:var(--sunset-soft);}
+.accept p{color:rgba(245,239,229,.72); margin-top:16px; max-width:46ch;}
+.accept .actions{display:flex; flex-direction:column; gap:14px;}
+.accept .btn-primary{background:var(--sand-50); color:var(--ink); border-color:var(--sand-50); justify-content:center;}
+.accept .btn-primary:hover{background:var(--sunset); border-color:var(--sunset); color:var(--sand-50);}
+.accept .btn-ghost{color:var(--sand-100); border-color:rgba(245,239,229,.4); justify-content:center;}
+.accept .btn-ghost:hover{background:rgba(245,239,229,.1); border-color:var(--sand-100);}
+
+/* ---- Assinatura ---- */
+.sign-grid{display:grid; grid-template-columns:1fr 1fr; gap:40px; margin-top:56px;}
+.sign-line{border-top:1px solid var(--line); padding-top:12px;}
+.sign-line .lbl{font-family:var(--mono); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-mute);}
+.sign-line .who{font-family:var(--serif); font-size:17px; color:var(--ink); margin-top:4px;}
+
+/* ---- Footer ---- */
+footer.footer{border-top:1px solid var(--line-soft); padding:48px 0 32px; margin-top:8px;}
+.footer-bottom{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-mute);}
+
+/* ---- Responsivo ---- */
+@media (max-width:780px){
+  .parties{grid-template-columns:1fr;}
+  .accept{grid-template-columns:1fr;}
+  .accept .actions{flex-direction:row; flex-wrap:wrap;}
+  .sign-grid{grid-template-columns:1fr; gap:32px;}
+  .cover-meta{gap:20px 28px;}
+  .doc-id{display:none;}
+}
+@media (max-width:480px){
+  .accept .actions{flex-direction:column;}
+  .btn-primary,.btn-ghost{width:100%; justify-content:center;}
+}
+
+/* ---- Impressão (gerar PDF pelo navegador) ---- */
+@media print{
+  .header,.accept .actions{display:none;}
+  body{background:#fff;}
+  .section{padding:24px 0; page-break-inside:avoid;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- ============================================================
+     CABEÇALHO FIXO (logo + identificador da proposta)
+     ============================================================ -->
+<header class="header">
+  <div class="shell header-inner">
+    <a href="#topo" class="logo" aria-label="Toca Experience">
+      <!-- Logo SVG dourada da Toca (não precisa alterar) -->
+      <svg viewBox="0 0 262 50" xmlns="http://www.w3.org/2000/svg" fill="none" role="img" aria-label="Toca Experience">
+        <defs>
+          <linearGradient id="logoGold" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#f5dc78"/><stop offset="50%" stop-color="#c49028"/><stop offset="100%" stop-color="#7a4c0e"/>
+          </linearGradient>
+        </defs>
+        <g stroke="url(#logoGold)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="19" cy="2.2" r="2" fill="url(#logoGold)" stroke="none"/>
+          <line x1="19" y1="4.2" x2="19" y2="7"/>
+          <path d="M4,47 L4,23 L19,7 L34,23 L34,47"/>
+          <path d="M11,47 L11,33 L19,22 L27,33 L27,47"/>
+        </g>
+        <text x="46" y="32" font-family="'Manrope',system-ui,sans-serif" font-size="15.5" font-weight="700" fill="url(#logoGold)" letter-spacing="2.8">TOCA EXPERIENCE</text>
+      </svg>
+    </a>
+    <div class="header-actions">
+      <!-- EDITAR: número/identificador interno da proposta -->
+      <span class="doc-id">Proposta #2026-001</span>
+      <a href="#aceite" class="btn-cta">Aceitar proposta</a>
+    </div>
+  </div>
+</header>
+
+<main id="topo">
+
+  <!-- ============================================================
+       1. CAPA / CABEÇALHO DA PROPOSTA (emissor + cliente)
+       ============================================================ -->
+  <section class="section cover">
+    <div class="shell">
+      <!-- EDITAR: categoria/linha de serviço -->
+      <div class="h-eyebrow">Proposta de Concierge · Estadia de Alto Padrão</div>
+
+      <!-- EDITAR: título da proposta -->
+      <h1 class="h-display">Casa Playa Amores,<br/>orquestrada com <em>intenção</em>.</h1>
+
+      <!-- EDITAR: subtítulo / resumo de uma linha -->
+      <p class="lede">Cinco noites exclusivas para o seu grupo no Feriado da Consciência Negra — casa de praia com piscina privativa, equipe dedicada e roteiro curado entre Balneário Camboriú e Florianópolis.</p>
+
+      <!-- EDITAR: destaques numéricos da capa -->
+      <div class="cover-meta">
+        <div><b>17–22 Nov</b><span>2026 · 5 noites</span></div>
+        <div><b>Praia Amores</b><span>Praia Brava · BC</span></div>
+        <div><b>Casa inteira</b><span>uso exclusivo</span></div>
+        <div><b>24/7</b><span>concierge dedicado</span></div>
+      </div>
+
+      <!-- EMISSOR + CLIENTE -->
+      <div class="parties">
+        <div class="party">
+          <h5>Emitido por</h5>
+          <!-- EDITAR: dados da sua empresa -->
+          <div class="pname">Toca Experience</div>
+          <p>
+            Antonio Monteiro Pereira Junior<br/>
+            Trancoso · Bahia · Brasil<br/>
+            WhatsApp: +55 21 97282-4659<br/>
+            contato@tocaexperience.com.br<br/>
+            www.tocaexperience.com.br
+          </p>
+        </div>
+        <div class="party">
+          <h5>Preparado para</h5>
+          <!-- EDITAR: dados do cliente -->
+          <div class="pname">Nome do Cliente</div>
+          <p>
+            Grupo / Empresa<br/>
+            Cidade · País<br/>
+            Telefone / WhatsApp<br/>
+            e-mail@cliente.com<br/>
+            Data de emissão: 30/05/2026
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       2. RESUMO EXECUTIVO
+       ============================================================ -->
+  <section class="section">
+    <div class="shell">
+      <div class="sec-head">
+        <div class="h-eyebrow">01 · Resumo Executivo</div>
+        <h2 class="h-section">A visão geral da experiência.</h2>
+      </div>
+      <div class="summary">
+        <!-- EDITAR: parágrafos do resumo executivo -->
+        <p>Esta proposta detalha a curadoria completa de uma estadia de cinco noites para o seu grupo durante o Feriado da Consciência Negra, com uso exclusivo da Casa Playa Amores na Praia Brava. Cuidamos de cada detalhe — da reserva do imóvel à montagem de equipe e ao roteiro de experiências entre Balneário Camboriú e Florianópolis.</p>
+        <p>O objetivo é entregar uma estadia sem fricção: vocês chegam, e tudo já está em movimento. Reservas confirmadas, transfers alinhados, chef e equipe de apoio prontos, e um concierge dedicado disponível 24/7 durante todo o período.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       3. ESCOPO DO PROJETO / SERVIÇOS
+       ============================================================ -->
+  <section class="section">
+    <div class="shell">
+      <div class="sec-head">
+        <div class="h-eyebrow">02 · Escopo</div>
+        <h2 class="h-section">O que está incluído.</h2>
+      </div>
+      <!-- EDITAR: cada card é uma frente de serviço; adicione/remova cards conforme necessário -->
+      <div class="scope-grid">
+        <article class="scope-card">
+          <div class="num">01</div>
+          <h3>Curadoria do Imóvel</h3>
+          <ul>
+            <li>Casa de praia com piscina privativa e jacuzzi</li>
+            <li>Uso exclusivo para o grupo nas 5 noites</li>
+            <li>Vistoria e preparo antes do check-in</li>
+          </ul>
+        </article>
+        <article class="scope-card">
+          <div class="num">02</div>
+          <h3>Equipe Dedicada</h3>
+          <ul>
+            <li>Chef privado e equipe de apoio</li>
+            <li>Limpeza e manutenção durante a estadia</li>
+            <li>Concierge à distância 24/7</li>
+          </ul>
+        </article>
+        <article class="scope-card">
+          <div class="num">03</div>
+          <h3>Roteiro de Experiências</h3>
+          <ul>
+            <li>Reservas em bares e restaurantes selecionados</li>
+            <li>Passeios em BC e Florianópolis</li>
+            <li>Acesso a beach clubs e vida noturna</li>
+          </ul>
+        </article>
+        <article class="scope-card">
+          <div class="num">04</div>
+          <h3>Logística</h3>
+          <ul>
+            <li>Transfers e deslocamentos coordenados</li>
+            <li>Suporte na chegada e na partida</li>
+            <li>Atendimento em PT · ES · EN</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       4. CRONOGRAMA E ETAPAS
+       ============================================================ -->
+  <section class="section">
+    <div class="shell">
+      <div class="sec-head">
+        <div class="h-eyebrow">03 · Cronograma</div>
+        <h2 class="h-section">Como a estadia se desenrola.</h2>
+      </div>
+      <!-- EDITAR: cada t-item é uma etapa do roteiro -->
+      <div class="timeline">
+        <div class="t-item">
+          <div class="t-tag">Dia 1 · Ter 17/11</div>
+          <h4>Chegada & Check-in</h4>
+          <p>Recepção a partir das 15h. A casa entregue pronta para uso, com jantar de frutos do mar e drinks alinhados em BC.</p>
+        </div>
+        <div class="t-item">
+          <div class="t-tag">Dias 2 a 5 · 18–21/11</div>
+          <h4>Experiências curadas</h4>
+          <p>Praias, beach clubs, gastronomia e vida noturna entre Balneário Camboriú e Florianópolis, com reservas garantidas.</p>
+        </div>
+        <div class="t-item">
+          <div class="t-tag">Dia 6 · Dom 22/11</div>
+          <h4>Florianópolis & Check-out</h4>
+          <p>Mercado Público e almoço em Jurerê, com saída até as 11h e tempo para aproveitar a manhã final.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       5. INVESTIMENTO (TABELA DE PREÇOS)
+       ============================================================ -->
+  <section class="section">
+    <div class="shell">
+      <div class="sec-head">
+        <div class="h-eyebrow">04 · Investimento</div>
+        <h2 class="h-section">Valores e condições de pagamento.</h2>
+      </div>
+      <!-- EDITAR: linhas de itens e valores -->
+      <div class="invest-table">
+        <div class="invest-wrap">
+          <table>
+            <thead>
+              <tr><th>Item</th><th>Descrição</th><th class="price">Valor</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="item">Hospedagem exclusiva</td>
+                <td>Casa Playa Amores · 5 noites · uso exclusivo</td>
+                <td class="price">Incluído</td>
+              </tr>
+              <tr>
+                <td class="item">Equipe & concierge</td>
+                <td>Chef, apoio e concierge 24/7</td>
+                <td class="price">Incluído</td>
+              </tr>
+              <tr>
+                <td class="item">Roteiro & reservas</td>
+                <td>Curadoria de experiências e logística</td>
+                <td class="price">Incluído</td>
+              </tr>
+              <tr class="total">
+                <td class="item">Investimento total</td>
+                <td>Pacote fechado · pagamento 50% + 50%</td>
+                <td class="price">R$ 68.000</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- EDITAR: notas de pagamento -->
+      <div class="invest-note">
+        <span>Sinal de 50% para confirmar a reserva</span>
+        <span>Saldo de 50% até 7 dias antes do check-in</span>
+        <span>Pix · CPF 056.842.517-06</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       6. TERMOS E CONDIÇÕES / VALIDADE
+       ============================================================ -->
+  <section class="section">
+    <div class="shell">
+      <div class="sec-head">
+        <div class="h-eyebrow">05 · Termos</div>
+        <h2 class="h-section">Condições da proposta.</h2>
+      </div>
+      <div class="terms">
+        <!-- EDITAR: cláusulas dos termos -->
+        <ol>
+          <li>O valor refere-se ao pacote fechado descrito nesta proposta, para o período de 17 a 22 de novembro de 2026.</li>
+          <li>A reserva é confirmada com o pagamento do sinal de 50%; o saldo deve ser quitado até 7 dias antes do check-in.</li>
+          <li>Cancelamentos seguem a política acordada em contrato específico assinado entre as partes.</li>
+          <li>Serviços adicionais não listados no escopo serão orçados à parte mediante solicitação.</li>
+          <li>Esta proposta não constitui contrato; o aceite formaliza o início da elaboração do contrato definitivo.</li>
+        </ol>
+        <!-- EDITAR: prazo de validade -->
+        <span class="validity">Proposta válida até 30/06/2026</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       RODAPÉ COM BOTÃO DE ACEITE / ASSINATURA
+       ============================================================ -->
+  <section class="section" id="aceite">
+    <div class="shell">
+      <div class="accept">
+        <div>
+          <h2>Pronto para <em>reservar</em>?</h2>
+          <!-- EDITAR: chamada final -->
+          <p>Confirme o aceite e damos início imediato à reserva da Casa Playa Amores e à montagem do roteiro do seu grupo.</p>
+        </div>
+        <div class="actions">
+          <!-- EDITAR: link do WhatsApp com mensagem pré-preenchida -->
+          <a href="https://wa.me/5521972824659?text=Ol%C3%A1%20Toca!%20Quero%20aceitar%20a%20proposta%20da%20Casa%20Playa%20Amores." class="btn-primary" target="_blank" rel="noopener">Aceitar pelo WhatsApp <span class="arrow">→</span></a>
+          <!-- EDITAR: e-mail de contato -->
+          <a href="mailto:contato@tocaexperience.com.br?subject=Aceite%20da%20Proposta%20Casa%20Playa%20Amores" class="btn-ghost">Aceitar por e-mail</a>
+        </div>
+      </div>
+
+      <!-- Linhas de assinatura (úteis ao imprimir / gerar PDF) -->
+      <div class="sign-grid">
+        <div class="sign-line">
+          <div class="lbl">Pela Toca Experience</div>
+          <!-- EDITAR: responsável pela empresa -->
+          <div class="who">Antonio Monteiro Pereira Junior</div>
+        </div>
+        <div class="sign-line">
+          <div class="lbl">Pelo Cliente</div>
+          <!-- EDITAR: nome do cliente -->
+          <div class="who">Nome do Cliente</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="footer">
+  <div class="shell footer-bottom">
+    <span>© 2026 Toca Experience</span>
+    <span>Trancoso · Bahia · Brasil</span>
+  </div>
+</footer>
+
+</body>
+</html>

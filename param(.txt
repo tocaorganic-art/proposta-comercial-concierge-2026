@@ -1,0 +1,13 @@
+param(
+    [Parameter(Mandatory = $true)]
+    [string]$Comando
+)
+
+$apiKey = "sk-f4df4472d9be8646d629a7557f4d1b5af882f8fbba671bdfce151bd0723547"
+$uri    = "https://api.anthropic.com/v1/messages"
+
+$headers = @{
+    "x-api-key"         = $apiKey
+    "anthropic-version" = "2023-06-01"
+    "Content-Type"      = "application/json"
+}
